@@ -678,7 +678,7 @@ export default function Portfolio() {
             </div>
             <div className="col-lg-6 text-center">
               <div className="profile-circle mx-auto">
-                <img src="sujal.png" alt="Sujal Lamichhane" />
+                <img src="/sujal.png" alt="Sujal Lamichhane" />
               </div>
             </div>
           </div>
