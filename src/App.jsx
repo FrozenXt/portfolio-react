@@ -1,39 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Github, Linkedin, Mail, Code, Briefcase, User, MessageSquare, ExternalLink, ChevronDown, Phone, MapPin, Download, Send, Twitter, Instagram, Facebook } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import {
+  Moon,
+  Sun,
+  Github,
+  Linkedin,
+  Mail,
+  Code,
+  Briefcase,
+  User,
+  MessageSquare,
+  ExternalLink,
+  ChevronDown,
+  Phone,
+  MapPin,
+  Download,
+  Send,
+  Twitter,
+  Instagram,
+  Facebook,
+} from "lucide-react";
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(true);
-  const [activeSection, setActiveSection] = useState('home');
-  const [typingText, setTypingText] = useState('');
+  const [activeSection, setActiveSection] = useState("home");
+  const [typingText, setTypingText] = useState("");
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [colorScheme, setColorScheme] = useState('purple'); // purple, blue, green, red
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [colorScheme, setColorScheme] = useState("purple"); // purple, blue, green, red
   const [showAllColors, setShowAllColors] = useState(false);
 
-  const texts = ['Full Stack Developer', 'Web Designer', 'Problem Solver', 'Tech Enthusiast'];
+  const texts = [
+    "Full Stack Developer",
+    "Web Designer",
+    "Problem Solver",
+    "Tech Enthusiast",
+  ];
 
   const colorSchemes = {
-    purple: { primary: '#6e45e2', secondary: '#88d3ce', accent: '#ff7e5f' },
-    blue: { primary: '#667eea', secondary: '#764ba2', accent: '#f093fb' },
-    green: { primary: '#11998e', secondary: '#38ef7d', accent: '#ffd89b' },
-    red: { primary: '#eb3349', secondary: '#f45c43', accent: '#fa709a' },
-    yellow: { primary: '#f6d365', secondary: '#fda085', accent: '#ffe259' },    
-    pink:{ primary: '#ff6fd8', secondary: '#ff8eb3', accent: '#f383ff'}
-  
+    purple: { primary: "#6e45e2", secondary: "#88d3ce", accent: "#ff7e5f" },
+    blue: { primary: "#667eea", secondary: "#764ba2", accent: "#f093fb" },
+    green: { primary: "#11998e", secondary: "#38ef7d", accent: "#ffd89b" },
+    red: { primary: "#eb3349", secondary: "#f45c43", accent: "#fa709a" },
+    yellow: { primary: "#f6d365", secondary: "#fda085", accent: "#ffe259" },
+    pink: { primary: "#ff6fd8", secondary: "#ff8eb3", accent: "#f383ff" },
   };
 
   const currentColors = colorSchemes[colorScheme];
 
   useEffect(() => {
-    const link = document.createElement('link');
-    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css';
-    link.rel = 'stylesheet';
+    const link = document.createElement("link");
+    link.href =
+      "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css";
+    link.rel = "stylesheet";
     document.head.appendChild(link);
 
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js';
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js";
     script.async = true;
     document.body.appendChild(script);
 
@@ -44,24 +73,27 @@ export default function Portfolio() {
   }, []);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      const currentText = texts[textIndex];
-      
-      if (isDeleting) {
-        setTypingText(currentText.substring(0, charIndex - 1));
-        setCharIndex(charIndex - 1);
-      } else {
-        setTypingText(currentText.substring(0, charIndex + 1));
-        setCharIndex(charIndex + 1);
-      }
+    const timeout = setTimeout(
+      () => {
+        const currentText = texts[textIndex];
 
-      if (!isDeleting && charIndex === currentText.length) {
-        setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && charIndex === 0) {
-        setIsDeleting(false);
-        setTextIndex((textIndex + 1) % texts.length);
-      }
-    }, isDeleting ? 50 : 100);
+        if (isDeleting) {
+          setTypingText(currentText.substring(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        } else {
+          setTypingText(currentText.substring(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        }
+
+        if (!isDeleting && charIndex === currentText.length) {
+          setTimeout(() => setIsDeleting(true), 2000);
+        } else if (isDeleting && charIndex === 0) {
+          setIsDeleting(false);
+          setTextIndex((textIndex + 1) % texts.length);
+        }
+      },
+      isDeleting ? 50 : 100,
+    );
 
     return () => clearTimeout(timeout);
   }, [charIndex, isDeleting, textIndex]);
@@ -69,49 +101,64 @@ export default function Portfolio() {
   const projects = [
     {
       title: "AI Chess Game",
-      description: "An advanced chess game featuring AI opponent using Minimax algorithm with Alpha-Beta pruning for optimal decision making.",
-      tech: ["Python", "AI", "Minimax","Alpha-Beta Pruning"],
+      description:
+        "An advanced chess game featuring AI opponent using Minimax algorithm with Alpha-Beta pruning for optimal decision making.",
+      tech: ["Python", "AI", "Minimax", "Alpha-Beta Pruning"],
       category: "ai",
       demo: "https://drive.usercontent.google.com/download?id=1U1pbtBod_hLhur5ossve0PrCHlZXY7Eg&export=download&authuser=0",
       code: "https://github.com/FrozenXt/AI-BASED-CHESS-GAME",
-      image: "/chess.jpg"
+      image: "/chess.jpg",
     },
     {
       title: "Online Report Sharing System",
-      description: "A secure platform for creating, sharing, and collaborating on reports with real-time editing.",
+      description:
+        "A secure platform for creating, sharing, and collaborating on reports with real-time editing.",
       tech: ["PHP", "MySQL", "JavaScript"],
       category: "fullstack",
       demo: "#",
       code: "https://github.com/FrozenXt/online-report-sharing-system",
-      image: "/online.jpg"
+      image: "/online.jpg",
     },
     {
       title: "SGPA Calculator",
-      description: "A comprehensive calculator for students to compute their Semester Grade Point Average with performance analysis.",
+      description:
+        "A comprehensive calculator for students to compute their Semester Grade Point Average with performance analysis.",
       tech: ["HTML/CSS", "JavaScript", "Python"],
       category: "web",
       demo: "#",
       code: "#",
-      image: "/images.jpg"
+      image: "/images.jpg",
     },
     {
       title: "E-Commerce Website",
-      description: "A full-featured online store with product catalog, shopping cart, and admin dashboard.",
+      description:
+        "A full-featured online store with product catalog, shopping cart, and admin dashboard.",
       tech: ["Laravel", "MySQL", "JavaScript"],
       category: "fullstack",
       demo: "#",
       code: "https://github.com/FrozenXt/E-commerce-website-using-laravel",
-      image: "/ecommerce.jpg"
+      image: "/ecommerce.jpg",
     },
     {
       title: "School Website",
-      description: "A fully responsive school website with application forms and admin management system.",
+      description:
+        "A fully responsive school website with application forms and admin management system.",
       tech: ["Laravel", "SQL", "JavaScript"],
       category: "fullstack",
       demo: "https://schoolwebsite-production-444f.up.railway.app/",
       code: "https://github.com/FrozenXt/School_website",
-      image: "/school.jpeg"
-    }
+      image: "/school.jpeg",
+    },
+    {
+      title: "US based Restaurant Website",
+      description:
+        "A responsive website for a US-based restaurant featuring online ordering and reservation systems, menu management, CRUD operations",
+      tech: ["HTML/CSS", "JavaScript", "Alpine.js", "PHP", "Laravel", "MySQL"],
+      category: "Fullstack",
+      demo: "#",
+      code: "https://github.com/FrozenXt/the-lighthouse-cafe.git",
+      image: "/restaurant.jpg",
+    },
   ];
 
   const skills = [
@@ -120,19 +167,21 @@ export default function Portfolio() {
     { name: "JavaScript", icon: "fab fa-js", progress: 85 },
     { name: "React", icon: "fab fa-react", progress: 70 },
     { name: "Python", icon: "fab fa-python", progress: 70 },
-    { name: "Laravel", icon: "fab fa-laravel", progress: 90 }
+    { name: "Laravel", icon: "fab fa-laravel", progress: 90 },
+    { name: "MySQL", icon: "fas fa-database", progress: 80 },
+    { name: "QA", icon: "fab fa-git-alt", progress: 75 },
   ];
 
   const stats = [
     { number: "10", label: "Projects Completed" },
     { number: "20+", label: "Happy Clients" },
     { number: "1", label: "Years Experience" },
-    { number: "15", label: "Technologies" }
+    { number: "15", label: "Technologies" },
   ];
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: "smooth" });
     setActiveSection(id);
   };
 
@@ -144,29 +193,30 @@ export default function Portfolio() {
     e.preventDefault();
     const whatsappNumber = "9779849088855";
     const message = `Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
-    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
-    setFormData({ name: '', email: '', message: '' });
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+    setFormData({ name: "", email: "", message: "" });
   };
 
   const downloadCV = () => {
-  const link = document.createElement('a');
-  link.href = '/CV-final1.pdf';  // File must be in the public folder
-  link.download = 'Sujal-CV.pdf'; // The name of the downloaded file
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
-
+    const link = document.createElement("a");
+    link.href = "/CV final1.pdf"; // File must be in the public folder
+    link.download = "Sujal-CV.pdf"; // The name of the downloaded file
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
-    <div style={{
-      backgroundColor: darkMode ? '#1a1a2e' : '#f9fafb',
-      color: darkMode ? '#f1f1f1' : '#1a1a2e',
-      minHeight: '100vh',
-      transition: 'all 0.3s',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
+    <div
+      style={{
+        backgroundColor: darkMode ? "#1a1a2e" : "#f9fafb",
+        color: darkMode ? "#f1f1f1" : "#1a1a2e",
+        minHeight: "100vh",
+        transition: "all 0.3s",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
@@ -277,7 +327,7 @@ export default function Portfolio() {
           justify-content: center;
           transition: all 0.3s;
           cursor: pointer;
-          background: ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
+          background: ${darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)"};
         }
 
         .social-icon:hover {
@@ -297,12 +347,12 @@ export default function Portfolio() {
         }
 
         .skill-card {
-          background: ${darkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)'};
+          background: ${darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.03)"};
           padding: 30px;
           border-radius: 15px;
           text-align: center;
           transition: all 0.3s;
-          border: 1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
+          border: 1px solid ${darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"};
         }
 
         .skill-card:hover {
@@ -314,7 +364,7 @@ export default function Portfolio() {
         .skill-progress {
           width: 100%;
           height: 6px;
-          background: ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
+          background: ${darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"};
           border-radius: 3px;
           overflow: hidden;
           margin-top: 10px;
@@ -330,7 +380,7 @@ export default function Portfolio() {
         .navbar-custom {
           backdrop-filter: blur(10px);
           transition: all 0.3s;
-          border-bottom: 1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
+          border-bottom: 1px solid ${darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"};
         }
 
         .btn-gradient {
@@ -394,7 +444,7 @@ export default function Portfolio() {
         }
 
         .nav-link-custom {
-          color: ${darkMode ? '#f1f1f1' : '#1a1a2e'} !important;
+          color: ${darkMode ? "#f1f1f1" : "#1a1a2e"} !important;
           font-weight: 500;
           transition: color 0.3s;
           position: relative;
@@ -420,17 +470,17 @@ export default function Portfolio() {
         }
 
         .card-custom {
-          background: ${darkMode ? 'rgba(255, 255, 255, 0.05)' : '#ffffff'};
-          border: 1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : '#e1e4e8'};
+          background: ${darkMode ? "rgba(255, 255, 255, 0.05)" : "#ffffff"};
+          border: 1px solid ${darkMode ? "rgba(255, 255, 255, 0.1)" : "#e1e4e8"};
           transition: all 0.3s;
         }
 
         .text-muted-custom {
-          color: ${darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'} !important;
+          color: ${darkMode ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.6)"} !important;
         }
 
         .bg-secondary-custom {
-          background: ${darkMode ? 'rgba(255, 255, 255, 0.03)' : '#f6f8fa'} !important;
+          background: ${darkMode ? "rgba(255, 255, 255, 0.03)" : "#f6f8fa"} !important;
         }
 
         .color-picker {
@@ -523,21 +573,21 @@ export default function Portfolio() {
 
 
         .form-control-custom {
-          background: ${darkMode ? 'rgba(255, 255, 255, 0.05)' : '#ffffff'};
-          border: 1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : '#e1e4e8'};
-          color: ${darkMode ? '#f1f1f1' : '#1a1a2e'};
+          background: ${darkMode ? "rgba(255, 255, 255, 0.05)" : "#ffffff"};
+          border: 1px solid ${darkMode ? "rgba(255, 255, 255, 0.1)" : "#e1e4e8"};
+          color: ${darkMode ? "#f1f1f1" : "#1a1a2e"};
           padding: 0.8rem;
           border-radius: 10px;
         }
 
         .form-control-custom:focus {
-          background: ${darkMode ? 'rgba(255, 255, 255, 0.08)' : '#ffffff'};
+          background: ${darkMode ? "rgba(255, 255, 255, 0.08)" : "#ffffff"};
           border-color: ${currentColors.primary};
-          color: ${darkMode ? '#f1f1f1' : '#1a1a2e'};
+          color: ${darkMode ? "#f1f1f1" : "#1a1a2e"};
           box-shadow: 0 0 0 0.2rem ${currentColors.primary}30;
         }
           .form-control-custom::placeholder {
-            color: ${darkMode ? 'rgba(255, 255, 255, 0.6)' : '#6c757d'};
+            color: ${darkMode ? "rgba(255, 255, 255, 0.6)" : "#6c757d"};
             opacity: 1;
           }
 
@@ -567,53 +617,69 @@ export default function Portfolio() {
       <div className="glow-effect glow-1"></div>
       <div className="glow-effect glow-2"></div>
 
-
-{/* Color Picker */}
-<div
-  className="color-picker"
-  onMouseEnter={() => setShowAllColors(true)}
-  onMouseLeave={() => setShowAllColors(false)}
->
-  <div className="text-center mb-2" style={{ fontSize: '0.8rem', fontWeight: '600' }}>
-    Color Theme
-  </div>
-
-  <div className="d-flex flex-column">
-
-    {/* Show only active color OR all colors on hover */}
-    { (showAllColors ? Object.keys(colorSchemes) : [colorScheme]).map((scheme) => (
+      {/* Color Picker */}
       <div
-        key={scheme}
-        className={`color-option ${colorScheme === scheme ? 'active' : ''}`}
-        style={{
-          background: `linear-gradient(135deg, ${colorSchemes[scheme].primary}, ${colorSchemes[scheme].secondary})`
-        }}
-        onClick={() => setColorScheme(scheme)}
-      />
-    ))}
+        className="color-picker"
+        onMouseEnter={() => setShowAllColors(true)}
+        onMouseLeave={() => setShowAllColors(false)}
+      >
+        <div
+          className="text-center mb-2"
+          style={{ fontSize: "0.8rem", fontWeight: "600" }}
+        >
+          Color Theme
+        </div>
 
-  </div>
-</div>
-
+        <div className="d-flex flex-column">
+          {/* Show only active color OR all colors on hover */}
+          {(showAllColors ? Object.keys(colorSchemes) : [colorScheme]).map(
+            (scheme) => (
+              <div
+                key={scheme}
+                className={`color-option ${colorScheme === scheme ? "active" : ""}`}
+                style={{
+                  background: `linear-gradient(135deg, ${colorSchemes[scheme].primary}, ${colorSchemes[scheme].secondary})`,
+                }}
+                onClick={() => setColorScheme(scheme)}
+              />
+            ),
+          )}
+        </div>
+      </div>
 
       {/* Navbar */}
-      <nav className={`navbar navbar-expand-lg fixed-top navbar-custom ${darkMode ? 'navbar-dark' : 'navbar-light'}`}
+      <nav
+        className={`navbar navbar-expand-lg fixed-top navbar-custom ${darkMode ? "navbar-dark" : "navbar-light"}`}
         style={{
-          backgroundColor: darkMode ? 'rgba(26, 26, 46, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-        }}>
+          backgroundColor: darkMode
+            ? "rgba(26, 26, 46, 0.95)"
+            : "rgba(255, 255, 255, 0.95)",
+        }}
+      >
         <div className="container">
-          <a className="navbar-brand gradient-text fw-bold fs-3" href="#home">Sujal.</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <a className="navbar-brand gradient-text fw-bold fs-3" href="#home">
+            Sujal.
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
-              {['home', 'skills', 'projects', 'contact'].map((item) => (
+              {["home", "skills", "projects", "contact"].map((item) => (
                 <li className="nav-item" key={item}>
-                  <a className="nav-link nav-link-custom" href={`#${item}`} onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item);
-                  }}>
+                  <a
+                    className="nav-link nav-link-custom"
+                    href={`#${item}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(item);
+                    }}
+                  >
                     {item.charAt(0).toUpperCase() + item.slice(1)}
                   </a>
                 </li>
@@ -623,10 +689,12 @@ export default function Portfolio() {
               className="btn ms-3"
               onClick={() => setDarkMode(!darkMode)}
               style={{
-                background: darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-                border: 'none',
-                borderRadius: '10px',
-                padding: '0.5rem 0.8rem'
+                background: darkMode
+                  ? "rgba(255, 255, 255, 0.1)"
+                  : "rgba(0, 0, 0, 0.05)",
+                border: "none",
+                borderRadius: "10px",
+                padding: "0.5rem 0.8rem",
               }}
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -636,33 +704,69 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" style={{ paddingTop: '120px', paddingBottom: '80px', position: 'relative', zIndex: 1 }}>
+      <section
+        id="home"
+        style={{
+          paddingTop: "120px",
+          paddingBottom: "80px",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6 mb-5 mb-lg-0">
-              <h1 className="display-3 fw-bold mb-3">Hi, I'm <span className="gradient-text">Sujal Lamichhane</span></h1>
-              <div className="gradient-text fs-4 fw-semibold mb-4" style={{ minHeight: '40px' }}>
+              <h1 className="display-3 fw-bold mb-3">
+                Hi, I'm <span className="gradient-text">Sujal Lamichhane</span>
+              </h1>
+              <div
+                className="gradient-text fs-4 fw-semibold mb-4"
+                style={{ minHeight: "40px" }}
+              >
                 {typingText}
               </div>
-              <p className="lead text-muted-custom mb-4" style={{ lineHeight: '1.8' }}>
-                A passionate web developer with expertise in creating modern, responsive, and user-friendly web applications. I specialize in front-end development but also enjoy working on full-stack projects.
+              <p
+                className="lead text-muted-custom mb-4"
+                style={{ lineHeight: "1.8" }}
+              >
+                A passionate web developer with expertise in creating modern,
+                responsive, and user-friendly web applications. I specialize in
+                front-end development but also enjoy working on full-stack
+                projects.
               </p>
               <div className="d-flex gap-3 mb-4 flex-wrap">
-                <button className="btn btn-gradient" onClick={() => scrollToSection('projects')}>
+                <button
+                  className="btn btn-gradient"
+                  onClick={() => scrollToSection("projects")}
+                >
                   View My Work
                 </button>
-                <button className="btn btn-outline-custom" onClick={() => scrollToSection('contact')}>
+                <button
+                  className="btn btn-outline-custom"
+                  onClick={() => scrollToSection("contact")}
+                >
                   Contact Me
                 </button>
                 <button className="btn btn-outline-custom" onClick={downloadCV}>
-                  <Download size={18} className="me-2" />Download CV
+                  <Download size={18} className="me-2" />
+                  Download CV
                 </button>
               </div>
               <div className="d-flex gap-3">
-                <a href="https://github.com/FrozenXt" className="social-icon" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://github.com/FrozenXt"
+                  className="social-icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Github size={20} />
                 </a>
-                <a href="https://www.linkedin.com/in/sujal-lamichhane-10266728b/" className="social-icon" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.linkedin.com/in/sujal-lamichhane-10266728b/"
+                  className="social-icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Linkedin size={20} />
                 </a>
                 <a href="#" className="social-icon">
@@ -689,7 +793,10 @@ export default function Portfolio() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-5 bg-secondary-custom" style={{ position: 'relative', zIndex: 1 }}>
+      <section
+        className="py-5 bg-secondary-custom"
+        style={{ position: "relative", zIndex: 1 }}
+      >
         <div className="container">
           <div className="row g-4 text-center">
             {stats.map((stat, idx) => (
@@ -705,20 +812,34 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-5" style={{ position: 'relative', zIndex: 1 }}>
+      <section
+        id="skills"
+        className="py-5"
+        style={{ position: "relative", zIndex: 1 }}
+      >
         <div className="container">
           <div className="text-center mb-5">
-            <Code size={40} className="mb-3" style={{ color: currentColors.primary }} />
+            <Code
+              size={40}
+              className="mb-3"
+              style={{ color: currentColors.primary }}
+            />
             <h2 className="section-title"> My Skills</h2>
           </div>
           <div className="row g-4">
             {skills.map((skill, idx) => (
               <div className="col-lg-4 col-md-6" key={idx}>
                 <div className="skill-card">
-                  <i className={`${skill.icon} fs-1 mb-3`} style={{ color: currentColors.secondary }}></i>
+                  <i
+                    className={`${skill.icon} fs-1 mb-3`}
+                    style={{ color: currentColors.secondary }}
+                  ></i>
                   <div className="fw-bold mb-2">{skill.name}</div>
                   <div className="skill-progress">
-                    <div className="skill-progress-bar" style={{ width: `${skill.progress}%` }}></div>
+                    <div
+                      className="skill-progress-bar"
+                      style={{ width: `${skill.progress}%` }}
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -728,10 +849,18 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-5 bg-secondary-custom" style={{ position: 'relative', zIndex: 1 }}>
+      <section
+        id="projects"
+        className="py-5 bg-secondary-custom"
+        style={{ position: "relative", zIndex: 1 }}
+      >
         <div className="container">
           <div className="text-center mb-5">
-            <Briefcase size={40} className="mb-3" style={{ color: currentColors.primary }} />
+            <Briefcase
+              size={40}
+              className="mb-3"
+              style={{ color: currentColors.primary }}
+            />
             <h2 className="section-title">My Projects</h2>
           </div>
           <div className="row g-4">
@@ -743,21 +872,49 @@ export default function Portfolio() {
                       src={project.image}
                       alt={project.title}
                       className="project-image mb-3"
-
                     />
-                    <h3 className="fw-bold mb-3" style={{ color: currentColors.primary }}>{project.title}</h3>
-                    <p className="text-muted-custom mb-4">{project.description}</p>
+                    <h3
+                      className="fw-bold mb-3"
+                      style={{ color: currentColors.primary }}
+                    >
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-custom mb-4">
+                      {project.description}
+                    </p>
                     <div className="mb-4">
                       {project.tech.map((tech, i) => (
-                        <span key={i} className="tech-badge">{tech}</span>
+                        <span key={i} className="tech-badge">
+                          {tech}
+                        </span>
                       ))}
                     </div>
                     <div className="d-flex gap-3">
-                      <a href={project.demo} className="text-decoration-none d-inline-flex align-items-center" style={{ color: currentColors.primary, fontWeight: '600' }} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink size={18} className="me-2" />Demo
+                      <a
+                        href={project.demo}
+                        className="text-decoration-none d-inline-flex align-items-center"
+                        style={{
+                          color: currentColors.primary,
+                          fontWeight: "600",
+                        }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink size={18} className="me-2" />
+                        Demo
                       </a>
-                      <a href={project.code} className="text-decoration-none d-inline-flex align-items-center" style={{ color: currentColors.primary, fontWeight: '600' }} target="_blank" rel="noopener noreferrer">
-                        <Github size={18} className="me-2" />Code
+                      <a
+                        href={project.code}
+                        className="text-decoration-none d-inline-flex align-items-center"
+                        style={{
+                          color: currentColors.primary,
+                          fontWeight: "600",
+                        }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github size={18} className="me-2" />
+                        Code
                       </a>
                     </div>
                   </div>
@@ -769,10 +926,18 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-5" style={{ position: 'relative', zIndex: 1 }}>
+      <section
+        id="contact"
+        className="py-5"
+        style={{ position: "relative", zIndex: 1 }}
+      >
         <div className="container">
           <div className="text-center mb-5">
-            <MessageSquare size={40} className="mb-3" style={{ color: currentColors.primary }} />
+            <MessageSquare
+              size={40}
+              className="mb-3"
+              style={{ color: currentColors.primary }}
+            />
             <h2 className="section-title">Get In Touch</h2>
           </div>
           <div className="row justify-content-center">
@@ -783,7 +948,7 @@ export default function Portfolio() {
                     type="text"
                     name="name"
                     className="form-control form-control-custom"
-                    placeholder ="Your Name"
+                    placeholder="Your Name"
                     value={formData.name}
                     onChange={handleFormChange}
                     required
@@ -812,18 +977,36 @@ export default function Portfolio() {
                   ></textarea>
                 </div>
                 <button type="submit" className="btn btn-gradient w-100">
-                  <Send size={18} className="me-2" />Send Message via WhatsApp
+                  <Send size={18} className="me-2" />
+                  Send Message via WhatsApp
                 </button>
               </form>
 
               <div className="row g-4 mt-4">
                 <div className="col-md-4">
-                  <a href="mailto:sujallc30@gmail.com" className="text-decoration-none">
+                  <a
+                    href="mailto:sujallc30@gmail.com"
+                    className="text-decoration-none"
+                  >
                     <div className="card card-custom text-center card-hover border-0 h-100">
                       <div className="card-body p-4">
-                        <Mail size={40} className="mb-3" style={{ color: currentColors.primary }} />
-                        <h5 className="fw-bold mb-2" style={{ color: currentColors.primary }}>Email</h5>
-                        <p className="text-muted-custom mb-0" style={{ fontSize: '0.9rem' }}>sujallc30@gmail.com</p>
+                        <Mail
+                          size={40}
+                          className="mb-3"
+                          style={{ color: currentColors.primary }}
+                        />
+                        <h5
+                          className="fw-bold mb-2"
+                          style={{ color: currentColors.primary }}
+                        >
+                          Email
+                        </h5>
+                        <p
+                          className="text-muted-custom mb-0"
+                          style={{ fontSize: "0.9rem" }}
+                        >
+                          sujallc30@gmail.com
+                        </p>
                       </div>
                     </div>
                   </a>
@@ -832,9 +1015,23 @@ export default function Portfolio() {
                   <a href="tel:+9779849088855" className="text-decoration-none">
                     <div className="card card-custom text-center card-hover border-0 h-100">
                       <div className="card-body p-4">
-                        <Phone size={40} className="mb-3" style={{ color: currentColors.primary }} />
-                        <h5 className="fw-bold mb-2" style={{ color: currentColors.primary}}>Phone</h5>
-                        <p className="text-muted-custom mb-0" style={{ fontSize: '0.9rem' }}>+977 9849088855</p>
+                        <Phone
+                          size={40}
+                          className="mb-3"
+                          style={{ color: currentColors.primary }}
+                        />
+                        <h5
+                          className="fw-bold mb-2"
+                          style={{ color: currentColors.primary }}
+                        >
+                          Phone
+                        </h5>
+                        <p
+                          className="text-muted-custom mb-0"
+                          style={{ fontSize: "0.9rem" }}
+                        >
+                          +977 9849088855
+                        </p>
                       </div>
                     </div>
                   </a>
@@ -842,56 +1039,100 @@ export default function Portfolio() {
                 <div className="col-md-4">
                   <div className="card card-custom text-center card-hover border-0 h-100">
                     <div className="card-body">
-                    <MapPin size={40} className="mb-3" style={{ color: currentColors.primary }} />
-                    <h5 className="fw-bold mb-2" style={{ color: currentColors.primary}}>Location</h5>
-                    <p className="text-muted-custom mb-0" style={{ fontSize: '0.9rem' }}>Kathmandu, Nepal</p>
+                      <MapPin
+                        size={40}
+                        className="mb-3"
+                        style={{ color: currentColors.primary }}
+                      />
+                      <h5
+                        className="fw-bold mb-2"
+                        style={{ color: currentColors.primary }}
+                      >
+                        Location
+                      </h5>
+                      <p
+                        className="text-muted-custom mb-0"
+                        style={{ fontSize: "0.9rem" }}
+                      >
+                        Kathmandu, Nepal
+                      </p>
+                    </div>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  {/* Footer */}
-  <footer className="py-4" style={{ 
-    backgroundColor: darkMode ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.05)',
-    borderTop: `1px solid ${darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
-    position: 'relative',
-    zIndex: 1
-  }}>
-    <div className="container">
-      <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <div className="mb-3 mb-md-0">
-          <div className="d-flex align-items-center">
-            <a className="navbar-brand gradient-text fw-bold fs-4" href="#home">Sujal.</a>
-            <span className="text-muted-custom ms-3" style={{ fontSize: '0.9rem' }}>
-              © {new Date().getFullYear()} All rights reserved.
-            </span>
+      {/* Footer */}
+      <footer
+        className="py-4"
+        style={{
+          backgroundColor: darkMode
+            ? "rgba(0, 0, 0, 0.3)"
+            : "rgba(0, 0, 0, 0.05)",
+          borderTop: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"}`,
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        <div className="container">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div className="mb-3 mb-md-0">
+              <div className="d-flex align-items-center">
+                <a
+                  className="navbar-brand gradient-text fw-bold fs-4"
+                  href="#home"
+                >
+                  Sujal.
+                </a>
+                <span
+                  className="text-muted-custom ms-3"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  © {new Date().getFullYear()} All rights reserved.
+                </span>
+              </div>
+            </div>
+            <div className="d-flex gap-3">
+              <a
+                href="https://github.com/FrozenXt"
+                className="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ width: "40px", height: "40px" }}
+              >
+                <Github size={18} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/sujal-lamichhane-10266728b/"
+                className="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ width: "40px", height: "40px" }}
+              >
+                <Linkedin size={18} />
+              </a>
+              <a
+                href="mailto:sujallc30@gmail.com"
+                className="social-icon"
+                style={{ width: "40px", height: "40px" }}
+              >
+                <Mail size={18} />
+              </a>
+            </div>
+          </div>
+          <div className="text-center mt-4">
+            <p
+              className="text-muted-custom mb-0"
+              style={{ fontSize: "0.85rem" }}
+            >
+              Designed and developed with ❤️ by Sujal Lamichhane
+            </p>
           </div>
         </div>
-        <div className="d-flex gap-3">
-          <a href="https://github.com/FrozenXt" className="social-icon" target="_blank" rel="noopener noreferrer" 
-             style={{ width: '40px', height: '40px' }}>
-            <Github size={18} />
-          </a>
-          <a href="https://www.linkedin.com/in/sujal-lamichhane-10266728b/" className="social-icon" target="_blank" rel="noopener noreferrer"
-             style={{ width: '40px', height: '40px' }}>
-            <Linkedin size={18} />
-          </a>
-          <a href="mailto:sujallc30@gmail.com" className="social-icon" style={{ width: '40px', height: '40px' }}>
-            <Mail size={18} />
-          </a>
-        </div>
-      </div>
-      <div className="text-center mt-4">
-        <p className="text-muted-custom mb-0" style={{ fontSize: '0.85rem' }}>
-          Designed and developed with ❤️ by Sujal Lamichhane
-        </p>
-      </div>
+      </footer>
     </div>
-  </footer>
-</div>
   );
 }
