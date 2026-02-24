@@ -199,7 +199,7 @@ export default function Portfolio() {
 
   const downloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/CV final1.pdf"; // File must be in the public folder
+    link.href = "/Sujal-CV.pdf"; // File must be in the public folder
     link.download = "Sujal-CV.pdf"; // The name of the downloaded file
     document.body.appendChild(link);
     link.click();
