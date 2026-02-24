@@ -1030,7 +1030,7 @@ export default function Portfolio() {
                           className="text-muted-custom mb-0"
                           style={{ fontSize: "0.9rem" }}
                         >
-                          +977 9849088855
+                          +977 9744583243
                         </p>
                       </div>
                     </div>
