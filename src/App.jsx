@@ -561,6 +561,7 @@ export default function Portfolio() {
     "React Developer",
     "Problem Solver",
     "Tech Enthusiast",
+    "Yii Developer",
   ]);
 
   const schemes = {
@@ -703,10 +704,20 @@ export default function Portfolio() {
       desc: "US-based restaurant site with online ordering, table reservation system & loyalty programme.",
       tech: ["Laravel", "Alpine.js", "MySQL", "Tailwind"],
       cat: "fullstack",
-      demo: "#",
-      code: "https://github.com/FrozenXt/the-lighthouse-cafe.git",
+      demo: "https://thelighthouse-cafe.com/",
+      code: "https://thelighthouse-cafe.com/",
       emoji: "🍽️",
       color: "#4f46e5",
+    },
+    {
+      title: "E-gunaso Kendra",
+      desc: "It is a yet unofficial government complaint management system where a citizens can submit their complaints and can tag the government authority of their area, It contains a 3 dashboard and reporting features.",
+      tech: ["Laravel", "Tailwind", "MySQL", "RBAC", "REST API", "Redis"],
+      cat: "fullstack",
+      demo: "#",
+      code: "https://github.com/FrozenXt/e-gunaso-kendra-",
+      emoji: "📢",
+      color: "#059669",
     },
   ];
 
@@ -762,7 +773,7 @@ export default function Portfolio() {
       color: c.p,
       icon: "💻",
       bullets: [
-        "Building scalable web apps with Laravel & PHP",
+        "Building scalable web apps with Laravel, Yii & PHP",
         "REST API design, database architecture & optimization",
         "Blade and Alpine.js frontend integration & real-time features",
         "Code review, CI/CD pipelines & cloud deployment",
@@ -1166,9 +1177,9 @@ export default function Portfolio() {
                     marginBottom: 30,
                   }}
                 >
-                  Passionate full-stack developer specializing in Laravel &
-                  React. I build modern, performant web applications — from
-                  architecture to deployment.
+                  Passionate full-stack developer specializing in Laravel, Yii &
+                  React and Alpine. I build modern, performant web applications
+                  — from architecture to deployment.
                 </p>
               </FromLeft>
               <FromLeft v={heroV} d={0.45}>
